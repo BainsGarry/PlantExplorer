@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+ 
 {% block content %}
 <style>
     .plant-box {
@@ -11,15 +11,15 @@
         background-color: #f9f9f9;
         color: black;
     }
-
+ 
     .guide {
         margin-bottom: 10px;
     }
-
+ 
     .scientific-name {
         margin-bottom: 15px;
     }
-
+ 
     .delete-btn {
         padding: 5px 10px;
         font-size: 14px;
@@ -30,12 +30,12 @@
         cursor: pointer;
         transition: background-color 0.3s;
     }
-
+ 
     .delete-btn:hover {
         background-color: #ff4d4d;
     }
 </style>
-
+ 
 <div id="favorites-container" class="container mt-5">
     {% for favorite in favorites %}
     <div class="plant-box">
@@ -51,24 +51,26 @@
         </div>
     </div>
     {% else %}
-    <p>You have no favorite plants yet.</p>
-    {% endfor %}
+    <div class="centered-content">
+        <p>You have no favorite plants yet!</p>
+    </div>
+        {% endfor %}
 </div>
-
+ 
 {% endblock %}
-
+ 
 {% block scripts %}
 <script>
     $(document).ready(function() {
         $('.delete-form').submit(function(event) {
             event.preventDefault(); // Prevent default form submission behavior
-            
+           
             // Get the form data
             var formData = $(this).serialize();
-            
+           
             // Reference to the current form
             var currentForm = $(this);
-            
+           
             // Submit the form via AJAX
             $.ajax({
                 url: '/api/remove_bookmark',
